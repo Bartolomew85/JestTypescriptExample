@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "version": "0.0.0",
+  "name": "example-typescript",
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*",
+    "@babel/preset-typescript": "*",
+    "@types/jest": "*",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "babel-jest": "*",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "*",
+    "jest-junit": "*",
+    "ts-jest": "*"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
+}

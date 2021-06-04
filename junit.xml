@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="9" failures="0" errors="0" time="3.031">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-05-14T08:44:24" time="1.119" tests="1">
+    <testcase classname=" subtracts 5 - 1 to equal 4 in TypeScript" name=" subtracts 5 - 1 to equal 4 in TypeScript" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-05-14T08:44:24" time="1.115" tests="1">
+    <testcase classname=" adds 1 + 2 to equal 3 in TScript" name=" adds 1 + 2 to equal 3 in TScript" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="calc - mocks" errors="0" failures="0" skipped="0" timestamp="2021-05-14T08:44:24" time="1.156" tests="7">
+    <testcase classname="calc - mocks returns result from subtract" name="calc - mocks returns result from subtract" time="0.002">
+    </testcase>
+    <testcase classname="calc - mocks returns result from sum" name="calc - mocks returns result from sum" time="0.001">
+    </testcase>
+    <testcase classname="calc - mocks adds last result to memory" name="calc - mocks adds last result to memory" time="0">
+    </testcase>
+    <testcase classname="calc - mocks adds last result to memory #2" name="calc - mocks adds last result to memory #2" time="0.001">
+    </testcase>
+    <testcase classname="calc - mocks subtracts last result to memory" name="calc - mocks subtracts last result to memory" time="0.001">
+    </testcase>
+    <testcase classname="calc - mocks clears the memory" name="calc - mocks clears the memory" time="0.001">
+    </testcase>
+    <testcase classname="calc - mocks throws an error when invalid Op is passed" name="calc - mocks throws an error when invalid Op is passed" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>
