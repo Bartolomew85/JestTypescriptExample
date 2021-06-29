@@ -12,19 +12,25 @@
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "@babel/preset-typescript": "*",
+    "@types/jasmine": "^3.7.7",
     "@types/jest": "*",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "babel-jest": "*",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-plugin-import": "^2.22.1",
+    "jasmine": "^3.7.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.4.0",
     "jest": "*",
     "jest-junit": "*",
-    "ts-jest": "*"
+    "ts-jest": "*",
+    "ts-node": "^10.0.0"
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "jasmine": "jasmine-ts \"src/**/*.test.ts\""
   },
   "jest": {
     "testEnvironment": "jsdom"
