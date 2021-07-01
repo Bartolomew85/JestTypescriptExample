@@ -1,5 +1,5 @@
-import sub from './sub';
-import sum from './sum';
+import { subfunction } from './sub';
+import { sumfunction } from './sum';
 import Memory from './memory';
 
 type Op = 'MemoryAdd' | 'MemoryClear' | 'MemorySub' | 'Sub' | 'Sum';
@@ -21,13 +21,13 @@ export default (memory: Memory) => {
       }
       case 'Sub': {
         const [a, b] = input;
-        const result = sub(a, b);
+        const result = subfunction.sub(a, b);
         last = result;
         return result;
       }
       case 'Sum': {
         const [a, b] = input;
-        const result = sum(a, b);
+        const result = sumfunction.sum(a, b);
         last = result;
         return result;
       }

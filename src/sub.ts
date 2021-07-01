@@ -1,7 +1,7 @@
 // Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 
-import sum from './sum';
+import { sumfunction } from './sum';
 
-const sub = (a: number, b: number): number => sum(a, -b);
+const sub = (a: number, b: number): number => sumfunction.sum(a, -b);
 
-export default sub;
+export const subfunction = { sub };
