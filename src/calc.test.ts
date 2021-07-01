@@ -2,101 +2,120 @@ import Memory from './memory';
 import sub from './sub';
 import sum from './sum';
 import makeCalc from './calc';
+import { TestSource } from "jasmine-data-provider-ts";
 
-jest.mock('./memory'); // create auto mock
-jest.mock('./sub');
-jest.mock('./sum');
+// jest.mock('./memory'); // create auto mock
+// jest.mock('./sub');
+// jest.mock('./sum');
 
-const mockSub = sub as jest.MockedFunction<typeof sub>;
-const mockSum = sum as jest.MockedFunction<typeof sum>;
-const MockMemory = Memory as jest.MockedClass<typeof Memory>;
+// const mockSub = sub as jest.MockedFunction<typeof sub>;
+// const mockSum = sum as jest.MockedFunction<typeof sum>;
+// const MockMemory = Memory as jest.MockedClass<typeof Memory>;
 
 describe('calc - mocks', () => {
-  const memory = new MockMemory();
+  // const memory = new MockMemory();
 
-  it('returns result from subtract', () => {
-    mockSub.mockReturnValueOnce(0);
+  // it('returns result from subtract', () => {
+  //   mockSub.mockReturnValueOnce(0);
 
-    const calc = makeCalc(memory);
-    const result = calc('Sub', [2, 2]);
+  //   const calc = makeCalc(memory);
+  //   const result = calc('Sub', [2, 2]);
 
-    expect(result).toEqual(0);
-    expect(mockSub).toHaveBeenCalledWith(2, 2);
-  });
+  //   expect(result).toEqual(0);
+  //   expect(mockSub).toHaveBeenCalledWith(2, 2);
+  // });
 
-  it('returns result from sum', () => {
-    mockSum.mockReturnValueOnce(2);
+  // it('returns result from sum', () => {
+  //   mockSum.mockReturnValueOnce(2);
 
-    const calc = makeCalc(memory);
-    const result = calc('Sum', [1, 1]);
+  //   const calc = makeCalc(memory);
+  //   const result = calc('Sum', [1, 1]);
 
-    expect(result).toEqual(2);
-    expect(mockSum).toHaveBeenCalledWith(1, 1);
-  });
+  //   expect(result).toEqual(2);
+  //   expect(mockSum).toHaveBeenCalledWith(1, 1);
+  // });
 
-  it('adds last result to memory', () => {
-    MockMemory.prototype.add.mockImplementationOnce(x => x);
-    mockSum.mockReturnValueOnce(2);
+  // it('adds last result to memory', () => {
+  //   MockMemory.prototype.add.mockImplementationOnce(x => x);
+  //   mockSum.mockReturnValueOnce(2);
 
-    const calc = makeCalc(memory);
-    const sumResult = calc('Sum', [1, 1]);
-    const memoryResult = calc('MemoryAdd', []);
+  //   const calc = makeCalc(memory);
+  //   const sumResult = calc('Sum', [1, 1]);
+  //   const memoryResult = calc('MemoryAdd', []);
 
-    expect(sumResult).toEqual(2);
-    expect(memoryResult).toEqual(2);
-    expect(MockMemory.prototype.add).toHaveBeenCalledWith(2);
-  });
+  //   expect(sumResult).toEqual(2);
+  //   expect(memoryResult).toEqual(2);
+  //   expect(MockMemory.prototype.add).toHaveBeenCalledWith(2);
+  // });
 
-  test('adds last result to memory #2', () => {
-    MockMemory.prototype.add.mockImplementationOnce((x) => { 
-      expect(x).toBe(2);
-      return x;
+  // test('adds last result to memory #2', () => {
+  //   MockMemory.prototype.add.mockImplementationOnce((x) => { 
+  //     expect(x).toBe(2);
+  //     return x;
+  //   });
+  //   mockSum.mockReturnValueOnce(2);
+
+  //   const calc = makeCalc(memory);
+  //   const sumResult = calc('Sum', [1, 1]);
+  //   const memoryResult = calc('MemoryAdd', []);
+
+  //   expect(sumResult).toEqual(2);
+  //   expect(memoryResult).toEqual(2);
+  //   expect(MockMemory.prototype.add).toHaveBeenCalledWith(2);
+  // });
+
+  // it('subtracts last result to memory', () => {
+  //   MockMemory.prototype.subtract.mockImplementationOnce(x => x);
+  //   mockSum.mockReturnValueOnce(2);
+
+  //   const calc = makeCalc(memory);
+  //   const sumResult = calc('Sum', [1, 1]);
+  //   const memoryResult = calc('MemorySub', []);
+
+  //   expect(sumResult).toEqual(2);
+  //   expect(memoryResult).toEqual(2);
+  //   expect(MockMemory.prototype.subtract).toHaveBeenCalledWith(2);
+  // });
+
+  // it('clears the memory', () => {
+  //   MockMemory.prototype.add.mockImplementationOnce(x => x);
+  //   mockSum.mockReturnValueOnce(2).mockReturnValueOnce(4);
+
+  //   const calc = makeCalc(memory);
+  //   const sumResult = calc('Sum', [1, 1]);
+  //   const memoryResult = calc('MemoryAdd', []);
+  //   const sumResult2 = calc('Sum', [2, 2]);
+  //   const clearResult = calc('MemoryClear', []);
+
+  //   expect(sumResult).toEqual(2);
+  //   expect(memoryResult).toEqual(2);
+  //   expect(sumResult2).toEqual(4);
+  //   expect(clearResult).toEqual(4);
+  //   expect(MockMemory.prototype.reset).toHaveBeenCalledTimes(1);
+  // });
+
+  // it('throws an error when invalid Op is passed', () => {
+  //   const calc = makeCalc(memory);
+
+  //   // @ts-expect-error
+  //   expect(() => calc('Multiply', [2, 3])).toThrowError('Invalid op');
+  // });
+
+  describe("parameterised test using a function as source", function() {
+    function provider() {
+      return [
+        { a: 2, b: 3, expected: 5 },
+        { a: 14, b: 15, expected: 29 },
+      ];
+    }
+    
+    TestSource<any>(provider, function(data) {
+      it("should return value using operator +", function() {
+        const calc = makeCalc(new Memory());
+        const result = calc('Sum', [data.a, data.b]);
+
+        expect(result).toEqual(data.expected);
+      });
     });
-    mockSum.mockReturnValueOnce(2);
-
-    const calc = makeCalc(memory);
-    const sumResult = calc('Sum', [1, 1]);
-    const memoryResult = calc('MemoryAdd', []);
-
-    expect(sumResult).toEqual(2);
-    expect(memoryResult).toEqual(2);
-    expect(MockMemory.prototype.add).toHaveBeenCalledWith(2);
-  });
-
-  it('subtracts last result to memory', () => {
-    MockMemory.prototype.subtract.mockImplementationOnce(x => x);
-    mockSum.mockReturnValueOnce(2);
-
-    const calc = makeCalc(memory);
-    const sumResult = calc('Sum', [1, 1]);
-    const memoryResult = calc('MemorySub', []);
-
-    expect(sumResult).toEqual(2);
-    expect(memoryResult).toEqual(2);
-    expect(MockMemory.prototype.subtract).toHaveBeenCalledWith(2);
-  });
-
-  it('clears the memory', () => {
-    MockMemory.prototype.add.mockImplementationOnce(x => x);
-    mockSum.mockReturnValueOnce(2).mockReturnValueOnce(4);
-
-    const calc = makeCalc(memory);
-    const sumResult = calc('Sum', [1, 1]);
-    const memoryResult = calc('MemoryAdd', []);
-    const sumResult2 = calc('Sum', [2, 2]);
-    const clearResult = calc('MemoryClear', []);
-
-    expect(sumResult).toEqual(2);
-    expect(memoryResult).toEqual(2);
-    expect(sumResult2).toEqual(4);
-    expect(clearResult).toEqual(4);
-    expect(MockMemory.prototype.reset).toHaveBeenCalledTimes(1);
-  });
-
-  it('throws an error when invalid Op is passed', () => {
-    const calc = makeCalc(memory);
-
-    // @ts-expect-error
-    expect(() => calc('Multiply', [2, 3])).toThrowError('Invalid op');
   });
 });
