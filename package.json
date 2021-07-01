@@ -25,13 +25,15 @@
     "jasmine-ts": "^0.4.0",
     "jest": "*",
     "jest-junit": "*",
+    "nyc": "^15.1.0",
     "ts-jest": "*",
     "ts-node": "^10.0.0"
   },
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "jasmine": "jasmine-ts \"src/**/*.test.ts\""
+    "jasmine": "jasmine-ts --config=spec/support/jasmine.json",
+    "coverage": "nyc npm run jasmine"
   },
   "jest": {
     "testEnvironment": "jsdom"
